@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:50px auto;
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:30px;
+}
+
+.left{
+    background:#fff;
+    border-radius:18px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.left img{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #0d6efd;
+    padding:4px;
+    background:#fff;
+}
+
+.left h2{
+    margin-top:20px;
+    font-size:28px;
+    font-weight:700;
+    color:#222;
+}
+
+.left p{
+    margin-top:12px;
+    color:#777;
+    font-size:16px;
+}
+
+.left a{
+    display:block;
+    margin-top:25px;
+    padding:14px;
+    text-decoration:none;
+    background:#0d6efd;
+    color:#fff;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.left a:hover{
+    background:#084298;
+}
+
+.right{
+    background:#fff;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.title{
+    font-size:30px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:30px;
+    border-bottom:2px solid #eee;
+    padding-bottom:15px;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.box{
+    background:#f8f9fa;
+    border-radius:12px;
+    padding:20px;
+    border-left:5px solid #0d6efd;
+    transition:.3s;
+}
+
+.box:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.box label{
+    display:block;
+    font-size:14px;
+    color:#777;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.box p{
+    font-size:19px;
+    color:#222;
+    font-weight:600;
+}
+
+.btns{
+    margin-top:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 28px;
+    text-decoration:none;
+    border-radius:8px;
+    color:#fff;
+    font-weight:600;
+    transition:.3s;
+    margin-right:12px;
+}
+
+.edit{
+    background:#198754;
+}
+
+.edit:hover{
+    background:#157347;
+}
+
+.logout{
+    background:#dc3545;
+}
+
+.logout:hover{
+    background:#bb2d3b;
+}
+
+@media(max-width:991px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.info{
+    grid-template-columns:1fr;
+}
+
+.left{
+    padding:30px;
+}
+
+}
+
+@media(max-width:576px){
+
+.left img{
+    width:130px;
+    height:130px;
+}
+
+.title{
+    font-size:24px;
+}
+
+.box p{
+    font-size:17px;
+}
+
+.btn{
+    width:100%;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="left">
+{% if request.user.photo %}
+    <img src="{{ request.user.photo.url }}" alt="User">
+{% else %}
+    <img src="{% static 'images/default-user.png' %}" alt="Default User">
+{% endif %}
+
+<p>Hotel Booking Member</p>
+
+<a href="{% url 'edit' %}">
+<i class="fa-solid fa-user-pen"></i>
+Edit Profile
+</a>
+
+</div>
+
+<div class="right">
+
+<h2 class="title">Profile Information</h2>
+
+<div class="info">
+
+<div class="box">
+<label>Username</label>
+<p>{{ request.user.username }}</p>
+</div>
+
+<div class="box">
+<label>Email</label>
+<p>{{ request.user.email }}</p>
+</div>
+
+<div class="box">
+<label>Phone Number</label>
+<p>{{ request.user.phone }}</p>
+</div>
+
+<div class="box">
+<label>Date Joined</label>
+<p>{{ request.user.date_joined|date:"d M Y" }}</p>
+</div>
+
+<div class="box">
+<label>Last Login</label>
+<p>{{ request.user.last_login|date:"d M Y H:i" }}</p>
+</div>
+
+<div class="box">
+<label>Status</label>
+<p>
+{% if request.user.is_active %}
+Active
+{% else %}
+Inactive
+{% endif %}
+</p>
+</div>
+
+</div>
+
+<div class="btns">
+
+<a href="{% url 'edit' %}" class="btn edit">
+<i class="fa-solid fa-pen"></i>
+Edit Profile
+</a>
+
+<a href="{% url 'logout' %}" class="btn logout">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

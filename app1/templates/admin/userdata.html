@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hotel Admin Panel</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+display:flex;
+background:#f5f5f5;
+}
+
+.sidebar{
+
+width:250px;
+height:100vh;
+background:#1e293b;
+color:white;
+padding:20px;
+position:fixed;
+
+}
+
+.sidebar h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+margin:15px 0;
+}
+
+.sidebar ul li a{
+
+text-decoration:none;
+color:white;
+display:block;
+padding:12px;
+border-radius:6px;
+
+}
+
+.sidebar ul li a:hover{
+
+background:#0ea5e9;
+
+}
+
+.main{
+
+margin-left:250px;
+width:100%;
+padding:30px;
+
+}
+
+.header{
+
+display:flex;
+justify-content:space-between;
+margin-bottom:30px;
+
+}
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+
+}
+
+.card{
+
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+table{
+
+width:100%;
+margin-top:30px;
+background:white;
+border-collapse:collapse;
+
+}
+
+table th,table td{
+
+padding:15px;
+border:1px solid #ddd;
+text-align:center;
+
+}
+
+table th{
+
+background:#0ea5e9;
+color:white;
+
+}
+.search-box{
+    margin-bottom:20px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.search-box form{
+    display:flex;
+    gap:10px;
+}
+
+.search-box input{
+    width:300px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    outline:none;
+    font-size:15px;
+}
+
+.search-box input:focus{
+    border-color:#0ea5e9;
+}
+
+.search-box button{
+    padding:10px 20px;
+    background:#0ea5e9;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:#0284c7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Hotel Admin</h2>
+
+<ul>
+
+<li><a href="{%url 'admindata'%}">🏠 Dashboard</a></li>
+
+<li><a href="{% url 'roomdata'%}">🛏 Rooms</a></li>
+
+<li><a href="{%url 'booking'%}">📅 Bookings</a></li>
+
+<li><a href="{%url 'user'%}">👤 Users</a></li>
+
+<li><a href="{%url 'feedback'%}">📩 Feedback</a></li>
+
+<li><a href="{% url 'logoutdata'%}">🚪 Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h1>Totel User</h1>
+
+<div class="search-box">
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search by Username, Email or Phone"
+               value="{{ request.GET.search }}">
+        <button type="submit">🔍 Search</button>
+    </form>
+</div>
+<h3>Welcome User</h3>
+
+
+</div>
+
+<table>
+
+<tr>
+
+<th>Username</th>
+<th>Email</th>
+<th>Phone No.</th>
+
+
+</tr>
+
+{% for booking in bookings %}
+
+<tr>
+
+<td>{{ booking.name }}</td>
+<td>{{ booking.email }}</td>
+<td>{{ booking.phone  }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+<script>
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function () {
+
+    let filter = this.value.toLowerCase();
+    let table = document.getElementById("userTable");
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let text = rows[i].textContent.toLowerCase();
+
+        if (text.indexOf(filter) > -1) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+
+});
+</script>
+</body>
+</html>

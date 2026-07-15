@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Booking</title>
+</head>
+
+<body>
+
+<h2>Edit Booking</h2>
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+<input type="text" name="name" value="{{booking.name}}" placeholder="Name">
+
+
+<input type="email" name="email" value="{{booking.email}}" placeholder="Email">
+
+
+<input type="text" name="phone" value="{{booking.phone}}" placeholder="Phone">
+
+
+<input type="date" name="check_in" value="{{booking.check_in|date:'Y-m-d'}}">
+
+
+<input type="date" name="check_out" value="{{booking.check_out|date:'Y-m-d'}}">
+
+
+<input type="text" name="guests" value="{{booking.guests}}" placeholder="Guests">
+
+
+<input type="number" name="room_no" value="{{booking.room_no}}" placeholder="Room No">
+
+
+<textarea name="message">
+{{booking.message}}
+</textarea>
+
+
+<button type="submit">
+Update Booking
+</button>
+
+
+</form>
+
+
+</body>
+</html>

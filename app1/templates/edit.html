@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+
+    <style>
+
+    body{
+        font-family:Arial;
+        background:#f4f4f4;
+    }
+
+    .box{
+        width:420px;
+        margin:50px auto;
+        background:#fff;
+        padding:25px;
+        border-radius:10px;
+        box-shadow:0 0 10px gray;
+    }
+
+    input{
+        width:100%;
+        padding:10px;
+        margin:10px 0;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:#007bff;
+        color:white;
+        border:none;
+        cursor:pointer;
+    }
+
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+
+<h2>Edit Profile</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input type="text" name="username" value="{{ request.user.username }}">
+
+<input type="email" name="email" value="{{ request.user.email }}">
+
+<input type="text" name="phone" value="{{ request.user.phone }}">
+
+<input type="file" name="photo" value="{{ request.user.photo}}">
+
+<button type="submit">
+Update Profile
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

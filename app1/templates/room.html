@@ -1,0 +1,141 @@
+{% include "header.html" %}
+{% load static %}
+      <!-- end header inner -->
+      <!-- end header -->
+      <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                     <h2>Our Room</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- our_room -->
+      <div  class="our_room">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <p  class="margin_0">“Discover Our Comfortable Rooms” </p>
+                  </div>
+               </div>
+            </div>
+          <div class="container">
+
+<div class="row">
+
+{% for room in data %}
+
+<div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+
+    <a href="{% url 'roomdetail' room.id %}" style="text-decoration:none; color:black;">
+
+        <div class="room-card">
+
+            <!-- IMAGE -->
+            <div class="room-img">
+
+                {% with room.images.first as img %}
+
+                    {% if img %}
+                        <img src="{{ img.photo.url }}">
+                    {% else %}
+                        <img src="/static/images/default.jpg">
+                    {% endif %}
+
+                {% endwith %}
+
+            </div>
+
+            <!-- INFO -->
+            <!-- <div class="room-body">
+
+                <h3>{{ room.room_type }}</h3>
+
+                <p>Room No: {{ room.room_no }}</p>
+
+                <h5 style="color:red;">₹{{ room.room_price }} / Night</h5>
+
+            </div> -->
+           <p style="text-align:center; font-weight:bold;">ROOMS</p>
+            {{room.description}}
+
+        </div>
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+               <!-- <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="../static/images/room2.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>Bed Room</h3>
+                         <p>Spacious and comfortable bedrooms designed for a relaxing and peaceful stay.  </p> 
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="../static/images/room3.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>Bed Room</h3>
+                        <p>Spacious and comfortable bedrooms designed for a relaxing and peaceful stay.  </p>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="../static/images/room4.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>Bed Room</h3>
+                        <p>Spacious and comfortable bedrooms designed for a relaxing and peaceful stay.  </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="../static/images/room5.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>Bed Room</h3>
+                        <p>Spacious and comfortable bedrooms designed for a relaxing and peaceful stay.  </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="serv_hover"  class="room">
+                     <div class="room_img">
+                        <figure><img src="../static/images/room6.jpg" alt="#"/></figure>
+                     </div>
+                     <div class="bed_room">
+                        <h3>Bed Room</h3>
+                        <p>Spacious and comfortable bedrooms designed for a relaxing and peaceful stay.  </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div> -->
+      <!-- end our_room -->
+     
+      <!--  footer -->
+        
+     {%include "footer.html"%}

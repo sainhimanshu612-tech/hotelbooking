@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Login</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)),
+            url('https://images.unsplash.com/photo-1566073771259-6a8506099945');
+            background-size:cover;
+            background-position:center;
+        }
+
+        .login-box{
+            width:400px;
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .login-box h2{
+            text-align:center;
+            margin-bottom:10px;
+            color:#333;
+        }
+
+        .login-box p{
+            text-align:center;
+            color:#777;
+            margin-bottom:25px;
+        }
+
+        .input-group{
+            margin-bottom:20px;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:5px;
+            color:#444;
+            font-weight:bold;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            outline:none;
+        }
+
+        .input-group input:focus{
+            border-color:#007bff;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            background:#007bff;
+            color:white;
+            font-size:16px;
+            border-radius:8px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login-btn:hover{
+            background:#0056b3;
+        }
+
+        .extra-links{
+            text-align:center;
+            margin-top:15px;
+        }
+
+        .extra-links a{
+            text-decoration:none;
+            color:#007bff;
+        }
+
+        .extra-links a:hover{
+            text-decoration:underline;
+        }
+
+        @media(max-width:450px){
+            .login-box{
+                width:90%;
+                padding:25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Hotel Booking</h2>
+        <p>Login to your account</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter Password" required>
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+            <div class="extra-links">
+                <p>
+                    Don't have an account?
+                    <a href="/register/">Register</a>
+                </p>
+                <br>
+                <a href="#">Forgot Password?</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
