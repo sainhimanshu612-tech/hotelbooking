@@ -20,9 +20,7 @@ toolset==2019.6.1
 tzdata==2025.3
 urllib3==2.7.0
 gunicorn
-<<<<<<< HEAD
 cloudinary
 django-cloudinary-storage
-=======
 whitenoise
->>>>>>> 39eec7d8fb25e920d3fba562082b1fd752b7ef9a
+
